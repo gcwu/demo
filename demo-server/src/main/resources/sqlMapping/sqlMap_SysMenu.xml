@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.demo.server.mapping.SysMenuMapping" >
+
+<select  id="getMenuList" parameterType="org.demo.api.entity.dto.TbSysMenuEntityDto" resultType="org.demo.api.entity.dto.TbSysMenuEntityDto">
+ 		<![CDATA[
+		SELECT * FROM `tb_sys_menu` AS t3 WHERE t3.`id` IN (
+		SELECT t2.`resourceId` FROM `tb_sys_map_role_resource` AS t2 WHERE  t2.`resourceType`=1 AND t2.`roleId` 
+		IN (SELECT t1.`roleId` FROM `tb_sys_map_user_role` t1 WHERE t1.`userId`='1' ))
+		 ]]>
+</select >
+</mapper>

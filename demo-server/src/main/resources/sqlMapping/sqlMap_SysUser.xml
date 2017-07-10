@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.demo.server.mapping.SysUserMapping" >
+
+<select  id="getUserInfo" parameterType="org.demo.api.entity.dto.TbSysUserEntityDto" resultType="org.demo.api.entity.dto.TbSysUserEntityDto">
+ 		<![CDATA[
+		SELECT * FROM `tb_sys_user` 
+		WHERE 1=1
+		 ]]>
+		<if test="id != null and id!=''">
+		<![CDATA[ AND id =#{id} ]]>
+		</if>
+		<if test="loginName != null and loginName!=''">
+		<![CDATA[ AND loginName = #{loginName} ]]>
+		</if>
+</select >
+</mapper>
