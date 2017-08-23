@@ -1,5 +1,6 @@
 package org.demo.web.sys.controller;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -8,7 +9,9 @@ import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.subject.Subject;
+import org.demo.api.constant.SysConstant;
 import org.demo.api.entity.dto.TbSysUserEntityDto;
+import org.demo.api.service.redis.RedisService;
 import org.demo.api.service.sys.SysUserService;
 import org.demo.api.util.EncryptUtils;
 import org.demo.web.base.controller.WebBaseController;
@@ -22,10 +25,11 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping(value = "login")
 public class LoginController extends WebBaseController{
 	
-	@Autowired
+	@Resource
 	private SysUserService sysUserService;
 	
-	
+	@Resource
+	private RedisService redisService;
 	/*
 	 * @Autowired User user;
 	 */
@@ -61,6 +65,8 @@ public class LoginController extends WebBaseController{
 				e.printStackTrace();
 			}
 			setCurrentUserInfo(request, userInfo);
+			//保存登录信息到redis
+			redisService.set(userInfo.getLoginName(), userInfo);
 			modelView.setViewName("redirect:/index");
 		}else{
 			modelView.addObject("message", "login errors");

@@ -23,5 +23,9 @@
 	<!--     菜单服务提供者 -->
 	<bean id="sysMenuService" class="org.demo.server.service.impl.SysMenuServiceImpl"></bean>
  	<dubbo:service interface="org.demo.api.service.sys.SysMenuService" ref="sysMenuService" timeout="1200000"/>  
+ 	
+ 	<!--  redis服务提供者 -->
+ 	<bean id="redisService" class="org.demo.server.redis.impl.RedisServiceImpl"></bean>
+ 	<dubbo:service interface="org.demo.api.service.redis.RedisService" ref="redisService" timeout="1200000"/>  
     </beans>  
   

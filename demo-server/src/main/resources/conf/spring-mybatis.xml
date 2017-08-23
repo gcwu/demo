@@ -12,15 +12,11 @@
 	<!-- 自动扫描 -->
 	<context:component-scan base-package="org.demo" />
 	<!-- 引入配置文件 -->
-	<bean id="propertyConfigurer"
-		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		<property name="location" value="classpath:jdbc.properties" />
-	</bean>
-
+	<context:property-placeholder location="classpath:jdbc.properties" ignore-unresolvable="true"/> 
 
 		<!-- c3p0 -->
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"  
-        destroy-method="close">  
+        >  
         <property name="driverClass" value="${jdbc.driver}" />  
         <property name="jdbcUrl" value="${jdbc.url}" />  
         <property name="user" value="${jdbc.username}" />  
@@ -55,6 +51,7 @@
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
+	
 	<import resource="classpath:conf/dubbo.xml"/>
-<!-- 	<import resource="classpath:conf/redis-context.xml"/> -->
+	<import resource="classpath:conf/redis-context.xml"/>
 </beans>
