@@ -21,7 +21,7 @@
     <!-- 菜单服务 -->
     <dubbo:reference id="sysMenuService"  interface="org.demo.api.service.sys.SysMenuService" /> 
     
-    <!-- 菜单服务 -->
+    <!-- redis服务 -->
     <dubbo:reference id="redisService"  interface="org.demo.api.service.redis.RedisService" /> 
 </beans>  
   
