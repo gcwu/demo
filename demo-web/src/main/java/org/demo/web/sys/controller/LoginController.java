@@ -15,6 +15,7 @@ import org.demo.api.service.redis.RedisService;
 import org.demo.api.service.sys.SysUserService;
 import org.demo.api.util.EncryptUtils;
 import org.demo.web.base.controller.WebBaseController;
+import org.demo.web.util.JsonUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -66,7 +67,7 @@ public class LoginController extends WebBaseController{
 			}
 			setCurrentUserInfo(request, userInfo);
 			//保存登录信息到redis
-			redisService.set(userInfo.getLoginName(), userInfo);
+			redisService.set(userInfo.getLoginName(), JsonUtil.objectToJsonStr(userInfo));
 			modelView.setViewName("redirect:/index");
 		}else{
 			modelView.addObject("message", "login errors");

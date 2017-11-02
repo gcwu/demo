@@ -1,6 +1,5 @@
 package org.demo.api.service.redis;
 
-import java.util.Set;
 /**
  * redis 的操作开放接口
  * 
@@ -11,15 +10,17 @@ public interface RedisService {
 	/**
      * 通过key删除
      * 
-     * @param key
+     * @param keys
      */
     public abstract void del(String... keys);
-    /** 
-     * 批量删除<br> 
-     * （该操作会执行模糊查询，请尽量不要使用，以免影响性能或误删） 
-     * @param pattern 
-     */   
-    public abstract void batchDel(String... keys);
+    
+    /**
+     * 通过key删除
+     * 
+     * @param key
+     */
+    public abstract Long delByKey(String key);
+   
     /** 
      * 取得缓存
      * @param key 
@@ -31,12 +32,12 @@ public interface RedisService {
      * 保存
      * @param key
      */
-    public abstract void  set(String key,Object obj);
+    public abstract void  set(String key,String obj);
     
     /** 
-     * 模糊查询keys 
+     * 查询keys 
      * @param pattern 
      * @return 
      */  
-    public abstract Set<String> getByKeys(String pattern);
+    public abstract String getByKey(String key);
 }

@@ -53,5 +53,5 @@
 	</bean>
 	
 	<import resource="classpath:conf/dubbo.xml"/>
-	<import resource="classpath:conf/redis-context.xml"/>
+	<import resource="classpath:conf/redis-cluster-config.xml"/>
 </beans>
