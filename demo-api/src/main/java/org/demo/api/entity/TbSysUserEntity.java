@@ -2,6 +2,8 @@ package org.demo.api.entity;
 
 
 import java.util.Date;
+
+import javax.validation.constraints.NotNull;
 public class TbSysUserEntity  implements java.io.Serializable{
 
 	private static final long serialVersionUID = 8375863634191864998L;
@@ -14,11 +16,13 @@ public class TbSysUserEntity  implements java.io.Serializable{
     /**
      * 用户名
      */
+     @NotNull(message="loginName不能为空")
      private String loginName;
 
     /**
      * 登录密码
      */
+     @NotNull(message="password不能为空")
      private String password;
 
     /**

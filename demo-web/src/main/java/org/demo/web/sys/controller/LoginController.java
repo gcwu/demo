@@ -1,8 +1,14 @@
 package org.demo.web.sys.controller;
 
+import java.util.Set;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
@@ -16,6 +22,7 @@ import org.demo.api.service.sys.SysUserService;
 import org.demo.api.util.EncryptUtils;
 import org.demo.web.base.controller.WebBaseController;
 import org.demo.web.util.JsonUtil;
+import org.demo.web.util.Jsr303Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,10 +47,15 @@ public class LoginController extends WebBaseController{
 	 * @param user
 	   *           　登录用户
 	 * @return
+	 * @throws Exception 
 	 */
 	@RequestMapping(value = "")
 	public ModelAndView login(TbSysUserEntityDto user,HttpSession session, HttpServletRequest request) {
-
+		//jsr303验证方法
+//		String res = Jsr303Util.check(user);
+//		if(res!=null) {
+//			throw new Exception(res);
+//		};
 		ModelAndView modelView = new ModelAndView();
 		Subject currentUser = SecurityUtils.getSubject();
 		//用户名和密码
