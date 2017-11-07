@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.demo.web.service.mapper.conf.ArcCreditMapper" >
+  <resultMap id="BaseResultMap" type="org.demo.web.service.domain.ArcCredit" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="consumer_no" property="consumerNo" jdbcType="BIGINT" />
+    <result column="total" property="total" jdbcType="DECIMAL" />
+    <result column="credit_type" property="creditType" jdbcType="VARCHAR" />
+    <result column="grade" property="grade" jdbcType="DOUBLE" />
+    <result column="used" property="used" jdbcType="DECIMAL" />
+    <result column="unuse" property="unuse" jdbcType="DECIMAL" />
+    <result column="state" property="state" jdbcType="VARCHAR" />
+    <result column="req_ext" property="reqExt" jdbcType="VARCHAR" />
+    <result column="grade1" property="grade1" jdbcType="DOUBLE" />
+    <result column="grade2" property="grade2" jdbcType="DOUBLE" />
+    <result column="grade3" property="grade3" jdbcType="DOUBLE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, consumer_no, total, credit_type, grade, used, unuse, state, req_ext, grade1, 
+    grade2, grade3
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from arc_credit
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from arc_credit
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="org.demo.web.service.domain.ArcCredit" >
+    insert into arc_credit (id, consumer_no, total, 
+      credit_type, grade, used, 
+      unuse, state, req_ext, 
+      grade1, grade2, grade3
+      )
+    values (#{id,jdbcType=BIGINT}, #{consumerNo,jdbcType=BIGINT}, #{total,jdbcType=DECIMAL}, 
+      #{creditType,jdbcType=VARCHAR}, #{grade,jdbcType=DOUBLE}, #{used,jdbcType=DECIMAL}, 
+      #{unuse,jdbcType=DECIMAL}, #{state,jdbcType=VARCHAR}, #{reqExt,jdbcType=VARCHAR}, 
+      #{grade1,jdbcType=DOUBLE}, #{grade2,jdbcType=DOUBLE}, #{grade3,jdbcType=DOUBLE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="org.demo.web.service.domain.ArcCredit" >
+    insert into arc_credit
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="consumerNo != null" >
+        consumer_no,
+      </if>
+      <if test="total != null" >
+        total,
+      </if>
+      <if test="creditType != null" >
+        credit_type,
+      </if>
+      <if test="grade != null" >
+        grade,
+      </if>
+      <if test="used != null" >
+        used,
+      </if>
+      <if test="unuse != null" >
+        unuse,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="reqExt != null" >
+        req_ext,
+      </if>
+      <if test="grade1 != null" >
+        grade1,
+      </if>
+      <if test="grade2 != null" >
+        grade2,
+      </if>
+      <if test="grade3 != null" >
+        grade3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="consumerNo != null" >
+        #{consumerNo,jdbcType=BIGINT},
+      </if>
+      <if test="total != null" >
+        #{total,jdbcType=DECIMAL},
+      </if>
+      <if test="creditType != null" >
+        #{creditType,jdbcType=VARCHAR},
+      </if>
+      <if test="grade != null" >
+        #{grade,jdbcType=DOUBLE},
+      </if>
+      <if test="used != null" >
+        #{used,jdbcType=DECIMAL},
+      </if>
+      <if test="unuse != null" >
+        #{unuse,jdbcType=DECIMAL},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="reqExt != null" >
+        #{reqExt,jdbcType=VARCHAR},
+      </if>
+      <if test="grade1 != null" >
+        #{grade1,jdbcType=DOUBLE},
+      </if>
+      <if test="grade2 != null" >
+        #{grade2,jdbcType=DOUBLE},
+      </if>
+      <if test="grade3 != null" >
+        #{grade3,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.demo.web.service.domain.ArcCredit" >
+    update arc_credit
+    <set >
+      <if test="consumerNo != null" >
+        consumer_no = #{consumerNo,jdbcType=BIGINT},
+      </if>
+      <if test="total != null" >
+        total = #{total,jdbcType=DECIMAL},
+      </if>
+      <if test="creditType != null" >
+        credit_type = #{creditType,jdbcType=VARCHAR},
+      </if>
+      <if test="grade != null" >
+        grade = #{grade,jdbcType=DOUBLE},
+      </if>
+      <if test="used != null" >
+        used = #{used,jdbcType=DECIMAL},
+      </if>
+      <if test="unuse != null" >
+        unuse = #{unuse,jdbcType=DECIMAL},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="reqExt != null" >
+        req_ext = #{reqExt,jdbcType=VARCHAR},
+      </if>
+      <if test="grade1 != null" >
+        grade1 = #{grade1,jdbcType=DOUBLE},
+      </if>
+      <if test="grade2 != null" >
+        grade2 = #{grade2,jdbcType=DOUBLE},
+      </if>
+      <if test="grade3 != null" >
+        grade3 = #{grade3,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.demo.web.service.domain.ArcCredit" >
+    update arc_credit
+    set consumer_no = #{consumerNo,jdbcType=BIGINT},
+      total = #{total,jdbcType=DECIMAL},
+      credit_type = #{creditType,jdbcType=VARCHAR},
+      grade = #{grade,jdbcType=DOUBLE},
+      used = #{used,jdbcType=DECIMAL},
+      unuse = #{unuse,jdbcType=DECIMAL},
+      state = #{state,jdbcType=VARCHAR},
+      req_ext = #{reqExt,jdbcType=VARCHAR},
+      grade1 = #{grade1,jdbcType=DOUBLE},
+      grade2 = #{grade2,jdbcType=DOUBLE},
+      grade3 = #{grade3,jdbcType=DOUBLE}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

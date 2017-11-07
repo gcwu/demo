@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration >
+	<!-- 引入配置文件 -->  
+    <properties resource="init.properties"/> 
+    <!-- 指定数据连接驱动jar地址 -->  
+    <classPathEntry location="${classPath}" />  
+ 	<context id="context1" >
+ 	<property name="javaFileEncoding" value="UTF-8"/>
+    <commentGenerator type="com.mybatis.util.MyCommentGenerator">    
+<!--    			是否生成注释代时间戳   -->
+<!--             <property name="suppressDate" value="true"/>     -->
+<!--             是否去除自动生成的注释 true：是 ： false:否     -->
+<!-- 	            <property name="addRemarkComments" value="false" /> -->
+<property name="addRemarkComments" value="true" />
+    </commentGenerator> 
+    <!--数据库链接URL，用户名、密码 -->    
+    <jdbcConnection driverClass="${jdbc_driver}"  connectionURL="${jdbc_url}" userId="${jdbc_user}"  password="${jdbc_password}"  />   
+    <!-- 生成模型的包名和位置-->   
+    <javaModelGenerator targetPackage="${targetPackage_domain}" targetProject="src/main/java">
+        <property name="enableSubPackages" value="true" /> 
+        <!-- 是否针对string类型的字段在set的时候进行trim调用 -->  
+        <property name="trimStrings" value="true"/>  
+    </javaModelGenerator>
+    <!-- 生成映射文件的包名和位置-->    
+    <sqlMapGenerator targetPackage="${targetPackage_conf}"  targetProject="src/main/java" >
+        <property name="enableSubPackages" value="true" />
+    </sqlMapGenerator>
+    <!-- 生成DAO的包名和位置-->  
+<!--     <javaClientGenerator targetPackage="${targetPackage_dao}" targetProject="src/main/java" type="XMLMAPPER" > -->
+<!--         <property name="enableSubPackages" value="true" />  -->
+<!--     </javaClientGenerator> -->
+    <!-- 要生成的表 tableName是数据库中的表名或视图名 domainObjectName是实体类名-->
+        <table schema="" tableName="${tableName}" domainObjectName="${domainObjectName}"
+  		  enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+    		enableSelectByExample="false" selectByExampleQueryId="false" >
+		</table>
+  </context>
+</generatorConfiguration>
